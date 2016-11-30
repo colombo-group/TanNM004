@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Calendar</title>
+	<link rel="stylesheet" href="style.css">
+	<script src='main.js'></script>
+</head>
+<body>
+		<table class="calendar">
+			<thead>
+				<tr id="info">
+					<th>
+						<a href="#" id="prev">&#60;</a>
+					</th>	
+					<th colspan="5" id="month">
+					</th>
+					<th>
+						<a href="#" id='next'>&#62;</a>
+					</th>
+				</tr>
+				<tr>
+					<th>su</th>
+					<th>mo</th>
+					<th>tu</th>
+					<th>we</th>
+					<th>th</th>
+					<th>fr</th>
+					<th>sa</th>
+				</tr>
+			</thead>
+
+			<tbody id='tbody'>
+				
+			</tbody>
+		</table>
+</body>
+</html>
+<script>
+	var today = Calendar.GetToday();
+	var tmp = Calendar.GetDays(today.getFullYear(),today.getMonth());
+	Calendar.ShowInfo(today.getFullYear(),today.getMonth(),tmp[0],tmp[1],tmp[2]);
+
+	document.getElementById('prev').onclick = function(){//prev
+		var thisMonth = document.getElementById('head').getAttribute("month");
+		var thisYear = document.getElementById('head').getAttribute("year");
+		if(thisMonth==0){
+			var tmp = Calendar.GetDays(parseInt(thisYear)-1,11);
+			Calendar.ShowInfo(parseInt(thisYear)-1,11,tmp[0],tmp[1],tmp[2]);
+		}
+		else{
+			var	tmp = Calendar.GetDays(thisYear,thisMonth-1);
+			Calendar.ShowInfo(thisYear,parseInt(thisMonth)-1,tmp[0],tmp[1],tmp[2]);
+		}
+	}
+
+	document.getElementById('next').onclick = function(){//next
+		var thisMonth = document.getElementById('head').getAttribute("month");
+		var thisYear = document.getElementById('head').getAttribute("year");
+		if(thisMonth==11){
+			var tmp = Calendar.GetDays(parseInt(thisYear)+1,0);
+			Calendar.ShowInfo(parseInt(thisYear)+1,0,tmp[0],tmp[1],tmp[2]);
+		}
+		else{
+			var	tmp = Calendar.GetDays(thisYear,parseInt(thisMonth)+1);
+			Calendar.ShowInfo(parseInt(thisYear),parseInt(thisMonth)+1,tmp[0],tmp[1],tmp[2]);
+		}
+	}
+</script>

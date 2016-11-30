@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Calculator</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="main.js"></script>
+</head>
+<body>
+	<table id="table">
+		<thead>
+			<tr>
+				<th colspan="4" >
+					<input type="text" id="Screen">
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><input type="button" value="mc" onclick="Mc()" /></td>
+				<td><input type="button" value="m+" onclick="Mplus()"/></td>
+				<td><input type="button" value="m-" onclick="Mdev()"/></td>
+				<td><input type="button" value="mr" onclick="Mr()"/></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="c" onclick="Screen.value=Screen.value.substr(0,Screen.value.length-1)"/></td>
+				<td><input type="button" value="&#177;" onclick="Screen.value+='-'" /></td>
+				<td></a><input type="button" value="/" onclick="Show(this.value)" /></td>
+				<td></a><input type="button" value="*" onclick="Show(this.value)" /></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="7" onclick="Show(this.value)" /></td>
+				<td><input type="button" value="8" onclick="Show(this.value)" /></td>
+				<td><input type="button" value="9" onclick="Show(this.value)" /></td>
+				<td><input type="button" value="-" onclick="Show(this.value)" /></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="4" onclick="Show(this.value)" /></td>
+				<td><input type="button" value="5" onclick="Show(this.value)" /></td>
+				<td><input type="button" value="6" onclick="Show(this.value)" /></td>
+				<td><input type="button" value="+" onclick="Show(this.value)" /></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="1" onclick="Show(this.value)" /></td>
+				<td><input type="button" value="2" onclick="Show(this.value)" /></td>
+				<td><input type="button" value="3" onclick="Show(this.value)" /></td>
+				<td rowspan="2"><input type="button" value="=" onclick="Result()" /></td>
+			</tr>
+			<tr>
+				<td colspan="2" ><input type="button" value="0" onclick="Show(this.value)" /></td>
+				<td><input type="button" value="." onclick="Show(this.value)"/></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
+<script>
+	var tmp = false;
+	var m =0;
+	var m1 = 0;
+	var Screen  = document.getElementById('Screen'); 
+	document.getElementById("Screen").disabled = true;
+
+	function Show(e){
+		if(tmp==true){
+			Screen.value = "";
+			tmp=false;
+		}
+		Screen.value +=e;
+	}
+
+	function Result(){
+		tmp = true;
+		Screen.value = eval(Screen.value);
+	}
+	function Mplus(){
+		m+=eval(Screen.value);
+		m1 = eval(Screen.value);
+	}
+	function Mdev(){
+		m -= m1;
+		m1=m;
+	}
+
+	function Mc(){
+		m =0;
+		m1 =0;
+	}
+	function Mr(){
+		Screen.value = m;
+		tmp =true;
+	}
+</script>
